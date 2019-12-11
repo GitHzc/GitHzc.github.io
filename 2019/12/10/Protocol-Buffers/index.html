@@ -45,18 +45,18 @@
   };
 </script>
 
-  <meta name="description" content="protocol buffers是什么 protocol buffers是一种灵活，可扩展，自动的，用来序列化结构化数据的机制。 相比XML，protocol buffers更小型，快速和简单。 定义好数据的结构，使用生成的代码来从数据流中读写数据。 数据的结构有更新时，不会影响到使用旧数据结构的程序。  protocol buffers如何运作 在.proto文件中message类型指明要序列化">
+  <meta name="description" content="protocol buffers是什么 protocol buffers是一种灵活，可扩展，自动的，用来序列化结构化数据的机制。 相比XML，protocol buffers更小型，快速和简单。 定义好数据的结构，使用生成的代码来从数据流中读写数据。 数据的结构有更新时，不会影响到使用旧数据结构的程序。">
 <meta name="keywords" content="tools">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Protocol Buffers">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;03&#x2F;Protocol-Buffers&#x2F;index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;10&#x2F;Protocol-Buffers&#x2F;index.html">
 <meta property="og:site_name" content="keep going">
-<meta property="og:description" content="protocol buffers是什么 protocol buffers是一种灵活，可扩展，自动的，用来序列化结构化数据的机制。 相比XML，protocol buffers更小型，快速和简单。 定义好数据的结构，使用生成的代码来从数据流中读写数据。 数据的结构有更新时，不会影响到使用旧数据结构的程序。  protocol buffers如何运作 在.proto文件中message类型指明要序列化">
+<meta property="og:description" content="protocol buffers是什么 protocol buffers是一种灵活，可扩展，自动的，用来序列化结构化数据的机制。 相比XML，protocol buffers更小型，快速和简单。 定义好数据的结构，使用生成的代码来从数据流中读写数据。 数据的结构有更新时，不会影响到使用旧数据结构的程序。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-03T07:54:49.999Z">
+<meta property="og:updated_time" content="2019-12-10T12:17:36.357Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2019/12/03/Protocol-Buffers/">
+<link rel="canonical" href="http://yoursite.com/2019/12/10/Protocol-Buffers/">
 
 
 <script id="page-configurations">
@@ -179,7 +179,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/03/Protocol-Buffers/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/10/Protocol-Buffers/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -202,10 +202,31 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-12-03 15:54:49" itemprop="dateCreated datePublished" datetime="2019-12-03T15:54:49+08:00">2019-12-03</time>
+              <time title="Created: 2019-12-10 20:17:36" itemprop="dateCreated datePublished" datetime="2019-12-10T20:17:36+08:00">2019-12-10</time>
             </span>
 
           
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.5k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
 
         </div>
       </header>
@@ -220,9 +241,10 @@
 <li>protocol buffers是一种灵活，可扩展，自动的，用来序列化结构化数据的机制。</li>
 <li>相比XML，protocol buffers更小型，快速和简单。</li>
 <li>定义好数据的结构，使用生成的代码来从数据流中读写数据。</li>
-<li>数据的结构有更新时，不会影响到使用旧数据结构的程序。</li>
+<li>数据的结构有更新时，不会影响到使用旧数据结构的程序。<a id="more"></a>
+<h1 id="protocol-buffers如何运作"><a href="#protocol-buffers如何运作" class="headerlink" title="protocol buffers如何运作"></a>protocol buffers如何运作</h1></li>
 </ul>
-<h1 id="protocol-buffers如何运作"><a href="#protocol-buffers如何运作" class="headerlink" title="protocol buffers如何运作"></a>protocol buffers如何运作</h1><ol>
+<ol>
 <li><p>在.proto文件中message类型指明要序列化的数据的结构。message是信息的逻辑记录，包含一系列name-value对。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">message Person &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  required string name &#x3D; 1;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  required int32 id &#x3D; 2;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  optional string email &#x3D; 3;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  enum PhoneType &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    MOBILE &#x3D; 0;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    HOME &#x3D; 1;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    WORK &#x3D; 2;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  message PhoneNumber &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    required string number &#x3D; 1;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    optional PhoneType type &#x3D; 2 [default &#x3D; HOME];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  repeated PhoneNumber phone &#x3D; 4;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 <p>每个message类型都有一个或多个唯一的带编号字段，每一个字段有name和value，value的类型可以是数字（整数或浮点数），布尔值，字符串，raw bytes，甚至是其他的message类型。字段前可以使用optional、required、repeated等修饰。</p>
@@ -270,11 +292,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/12/03/hello-world/" rel="prev" title="Hello World">
-      <i class="fa fa-chevron-left"></i> Hello World
+    <a href="/2019/12/10/ETW-%E7%90%86%E8%A7%A3/" rel="prev" title="ETW 理解">
+      <i class="fa fa-chevron-left"></i> ETW 理解
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/12/03/Linux%E7%9A%84mount%20namespace/" rel="next" title="Linux的mount namespace">
+    <a href="/2019/12/10/Linux%E7%9A%84mount%20namespace/" rel="next" title="Linux的mount namespace">
       Linux的mount namespace <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -335,13 +357,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -349,6 +371,9 @@
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
         <a href="https://github.com/GitHzc" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;GitHzc" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:13049240636@163.com" title="E-Mail → mailto:13049240636@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
       </span>
   </div>
 
@@ -376,6 +401,16 @@
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Hzc</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="Symbols count total">22k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">20 mins.</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
   </div>
@@ -384,6 +419,26 @@
   </div>
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 
