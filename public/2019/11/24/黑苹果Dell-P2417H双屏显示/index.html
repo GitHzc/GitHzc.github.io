@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="台式机装了黑苹果，能够双屏显示，但是会出现字体模糊的情况。了解到苹果有HiDPI这种黑科技来提升显示效果，所以就试了一下，然后就开启了漫长的折腾之路。有关Hi-DPI可以看一下这篇文章：HiDPI是什么？以及黑苹果如何开启HiDPI">
+<meta name="keywords" content="黑苹果">
+<meta property="og:type" content="article">
+<meta property="og:title" content="黑苹果Dell P2417H双屏显示">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;24&#x2F;%E9%BB%91%E8%8B%B9%E6%9E%9CDell-P2417H%E5%8F%8C%E5%B1%8F%E6%98%BE%E7%A4%BA&#x2F;index.html">
+<meta property="og:site_name" content="keep going">
+<meta property="og:description" content="台式机装了黑苹果，能够双屏显示，但是会出现字体模糊的情况。了解到苹果有HiDPI这种黑科技来提升显示效果，所以就试了一下，然后就开启了漫长的折腾之路。有关Hi-DPI可以看一下这篇文章：HiDPI是什么？以及黑苹果如何开启HiDPI">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-10T12:18:17.262Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2019/11/24/%E9%BB%91%E8%8B%B9%E6%9E%9CDell-P2417H%E5%8F%8C%E5%B1%8F%E6%98%BE%E7%A4%BA/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>黑苹果Dell P2417H双屏显示 | keep going</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">keep going</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/24/%E9%BB%91%E8%8B%B9%E6%9E%9CDell-P2417H%E5%8F%8C%E5%B1%8F%E6%98%BE%E7%A4%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hzc">
+      <meta itemprop="description" content="吐槽、发牢骚的地方">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="keep going">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          黑苹果Dell P2417H双屏显示
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-24 10:36:11" itemprop="dateCreated datePublished" datetime="2019-11-24T10:36:11+08:00">2019-11-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-10 20:18:17" itemprop="dateModified" datetime="2019-12-10T20:18:17+08:00">2019-12-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hackintosh/" itemprop="url" rel="index">
+                    <span itemprop="name">Hackintosh</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.3k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>台式机装了黑苹果，能够双屏显示，但是会出现字体模糊的情况。了解到苹果有HiDPI这种黑科技来提升显示效果，所以就试了一下，然后就开启了漫长的折腾之路。<br>有关Hi-DPI可以看一下这篇文章：<a href="https://www.sqlsec.com/2018/09/hidpi.html" target="_blank" rel="noopener">HiDPI是什么？以及黑苹果如何开启HiDPI</a></p>
+<a id="more"></a>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><ul>
+<li>屏幕型号：Dell P2417H</li>
+<li>分辨率：1920x1080</li>
+<li>黑苹果系统版本：Mojave 10.14.5</li>
+<li>显卡：Intel HD630、NVIDIA GT710</li>
+<li>显示器接口：hdmi</li>
+</ul>
+<h1 id="开启HiDPI"><a href="#开启HiDPI" class="headerlink" title="开启HiDPI"></a>开启HiDPI</h1><p>网上开启HiDPI的方法有很多，下面列出我尝试过的几种：</p>
+<ul>
+<li>使用一键开启脚本<br>一键开启脚本是使用起来最方便的方式，但我在用的时候总是找不到想要的Hi-DPI分辨率。<br><a href="https://github.com/syscl/Enable-HiDPI-OSX" target="_blank" rel="noopener">https://github.com/syscl/Enable-HiDPI-OSX</a><br><a href="https://github.com/xzhih/one-key-hidpi" target="_blank" rel="noopener">https://github.com/xzhih/one-key-hidpi</a></li>
+<li>手动修改配置文件<br>手动修改配置文件也有好几种方法：<ol>
+<li><a href="https://blog.daliansky.net/" target="_blank" rel="noopener">黑果小兵</a>的教程<br><a href="https://blog.daliansky.net/Use-HIDPI-to-solve-sleep-wake-up-black-screen,-Huaping-and-connect-the-external-monitor-the-correct-posture.html" target="_blank" rel="noopener">使用HIDPI解决睡眠唤醒黑屏、花屏及连接外部显示器的正确姿势</a><br>这种方法需要用到FixEDID这个软件来生成edid的配置文件，然后进行替换。FixEDID这个软件一开始我没法打开，用Xcode重新生成后就可以正常使用了。</li>
+<li>在线配置文件编辑器<br><a href="https://comsysto.github.io/Display-Override-PropertyList-File-Parser-and-Generator-with-HiDPI-Support-For-Scaled-Resolutions/" target="_blank" rel="noopener">SCALED RESOLUTIONS</a><br>这种方法是把填入的配置信息转换成plist文件中的专用格式，完成后导出，在系统中替换。我用的时候添加了1600x900分辨率，但是最后并没有1600x900的HiDPI分辨率。</li>
+<li><span id='jump'>使用hackintool生成配置文件，进行替换。</span><br>打开hackintool，选择音频菜单，hackintool会识别到显示器，点击下方的添加分辨率按钮，就会自动生成不同的分辨率。点击导出按钮，就会生成配置文件和内核扩展。我采用的是这种方法，但只替换了配置文件，没有用生成的内核扩展。这种方法也无法生成1600x900的HiDPI分辨率，但它的效果是最好的。我用其他方法时，有的会使屏幕颜色变得很偏红，有的连1440x810的HiDPI分辨率都没有。</li>
+</ol>
+</li>
+</ul>
+<h1 id="一个大坑"><a href="#一个大坑" class="headerlink" title="一个大坑"></a>一个大坑</h1><p>HiDPI技术适合用在高分屏上，Dell P2417H这块1080P的屏幕开HiDPI也能改善视觉效果，但是只能开低于1920x1080的HiDPI，这就导致了屏幕的内容会比原来放大。理想的分辨率是1600x900，但是我的两块屏幕就只有一块能开这个分辨率，另一块在这个分辨率下不是HiDPI，这可能是显卡的问题。<br>上也有人反映了<a href="https://github.com/xzhih/one-key-hidpi/issues/37" target="_blank" rel="noopener">跟我一样的问题</a>，给出的解决方案是将CPU仿冒成skylake微架构的。这种方法我试了之后没有作用，而且还开不了机，电脑启动后无法进入登录界面，整个屏幕都黑了，只有右上角有一个光标在闪。费了好大劲才把这个问题解决了，但开机之后有一块屏幕的颜色严重偏红。用了<a href="#jump">上面手动修改方法三</a>才把屏幕颜色给调正常了。</p>
+<h1 id="一点感想"><a href="#一点感想" class="headerlink" title="一点感想"></a>一点感想</h1><p>装黑苹果的门槛是越来越低了，但是一旦出现问题有时还是手足无措，只能照着网上的方案一个个去试，运气好可能就成功了。期间要花费大量的时间和精力，但好像没什么收获，感觉没学到多少东西。要真正从解决问题中成长，应该尝试去了解问题根源，不能只停留在表象。这次的问题跟EDID是逃不了干系了，但我对EDID这东西不了解，只能盲目地一个方法一个方法去试，这样的效率必然是极低的。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%BB%91%E8%8B%B9%E6%9E%9C/" rel="tag"># 黑苹果</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/12/11/%E5%85%B3%E4%BA%8Ejar/" rel="prev" title="关于jar">
+      <i class="fa fa-chevron-left"></i> 关于jar
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/10/ETW-%E7%90%86%E8%A7%A3/" rel="next" title="ETW 理解">
+      ETW 理解 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#配置"><span class="nav-number">1.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开启HiDPI"><span class="nav-number">2.</span> <span class="nav-text">开启HiDPI</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一个大坑"><span class="nav-number">3.</span> <span class="nav-text">一个大坑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一点感想"><span class="nav-number">4.</span> <span class="nav-text">一点感想</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hzc</p>
+  <div class="site-description" itemprop="description">吐槽、发牢骚的地方</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/GitHzc" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;GitHzc" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:13049240636@163.com" title="E-Mail → mailto:13049240636@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hzc</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="Symbols count total">22k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">20 mins.</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
