@@ -50,7 +50,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Protocol Buffers">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;10&#x2F;Protocol-Buffers&#x2F;index.html">
-<meta property="og:site_name" content="keep going">
+<meta property="og:site_name" content="不如写点东西吧">
 <meta property="og:description" content="protocol buffers是什么 protocol buffers是一种灵活，可扩展，自动的，用来序列化结构化数据的机制。 相比XML，protocol buffers更小型，快速和简单。 定义好数据的结构，使用生成的代码来从数据流中读写数据。 数据的结构有更新时，不会影响到使用旧数据结构的程序。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-12-10T12:17:36.357Z">
@@ -70,7 +70,7 @@
   };
 </script>
 
-  <title>Protocol Buffers | keep going</title>
+  <title>Protocol Buffers | 不如写点东西吧</title>
   
 
 
@@ -114,10 +114,11 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">keep going</span>
+        <span class="site-title">不如写点东西吧</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+        <p class="site-subtitle">随便写写</p>
   </div>
 
   <div class="site-nav-toggle">
@@ -184,11 +185,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Hzc">
-      <meta itemprop="description" content="吐槽、发牢骚的地方">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="keep going">
+      <meta itemprop="name" content="不如写点东西吧">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -251,8 +252,7 @@
 </li>
 <li><p>定义好message之后，运行protocol buffers complier，将生成数据的访问类。这些类提供了访问类中字段的简单方法，像name()和set_name()，同时也提供了方法来将数据序列化到raw byte，以及从raw byte反序列化为数据。如果使用的语言的c++，在上面的例子中运行complier将会生成Person类，能像下面这样来使用Person：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; serial data</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Person person;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">person.set_name(&quot;John Doe&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">person.set_id(1234);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">person.set_email(&quot;jdoe@example.com&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">fstream output(&quot;myfile&quot;, ios::out | ios::binary);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">person.SerializeToOstream(&amp;output);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; parse data</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">fstream input(&quot;myfile&quot;, ios::in | ios::binary);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">Person person;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">person.ParseFromIstream(&amp;input);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; &quot;Name: &quot; &lt;&lt; person.name() &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; &quot;E-mail: &quot; &lt;&lt; person.email() &lt;&lt; endl;</span></pre></td></tr></table></figure></li>
-<li><p>在message中添加新字段不会破坏后向兼容性，在解析的时候使用旧message的程序会忽略新加入的字段。</p>
-</li>
+<li>在message中添加新字段不会破坏后向兼容性，在解析的时候使用旧message的程序会忽略新加入的字段。</li>
 </ol>
 <h1 id="为什么不使用XML"><a href="#为什么不使用XML" class="headerlink" title="为什么不使用XML"></a>为什么不使用XML</h1><p>相比XML，protocol buffers有以下几个优点：</p>
 <ul>
@@ -262,16 +262,8 @@
 <li>更明确</li>
 <li>能生成易于编程使用的数据访问类</li>
 </ul>
-<p>例如，对包含name和email字段的person进行建模时，XML是这样写的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;person&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &lt;name&gt;John Doe&lt;&#x2F;name&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &lt;email&gt;jdoe@example.com&lt;&#x2F;email&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;person&gt;</span></pre></td></tr></table></figure>
-<p>对应的protocol buffers message是这样写的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"># Textual representation of a protocol buffer.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"># This is *not* the binary format used on the wire.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">person &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  name: &quot;John Doe&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  email: &quot;jdoe@example.com&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p>当编码为二进制格式时，protocol buffers使用28个字节，解析需要100-200纳秒。XML至少需要69个字节，解析需要5000-10000纳秒。</p>
-<p>protocol buffers对数据的操作更加容易：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; &quot;Name: &quot; &lt;&lt; person.name() &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; &quot;E-mail: &quot; &lt;&lt; person.email() &lt;&lt; endl;</span></pre></td></tr></table></figure>
-<p>XML的操作方式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; &quot;Name: &quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">     &lt;&lt; person.getElementsByTagName(&quot;name&quot;)-&gt;item(0)-&gt;innerText()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">     &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; &quot;E-mail: &quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">     &lt;&lt; person.getElementsByTagName(&quot;email&quot;)-&gt;item(0)-&gt;innerText()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">     &lt;&lt; endl;</span></pre></td></tr></table></figure>
-
+<p>例如，对包含name和email字段的person进行建模时，XML是这样写的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;person&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &lt;name&gt;John Doe&lt;&#x2F;name&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &lt;email&gt;jdoe@example.com&lt;&#x2F;email&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;person&gt;</span></pre></td></tr></table></figure><br>对应的protocol buffers message是这样写的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"># Textual representation of a protocol buffer.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"># This is *not* the binary format used on the wire.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">person &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  name: &quot;John Doe&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  email: &quot;jdoe@example.com&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure><br>当编码为二进制格式时，protocol buffers使用28个字节，解析需要100-200纳秒。XML至少需要69个字节，解析需要5000-10000纳秒。</p>
+<p>protocol buffers对数据的操作更加容易：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; &quot;Name: &quot; &lt;&lt; person.name() &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; &quot;E-mail: &quot; &lt;&lt; person.email() &lt;&lt; endl;</span></pre></td></tr></table></figure><br>XML的操作方式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; &quot;Name: &quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">     &lt;&lt; person.getElementsByTagName(&quot;name&quot;)-&gt;item(0)-&gt;innerText()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">     &lt;&lt; endl;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; &quot;E-mail: &quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">     &lt;&lt; person.getElementsByTagName(&quot;email&quot;)-&gt;item(0)-&gt;innerText()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">     &lt;&lt; endl;</span></pre></td></tr></table></figure></p>
 <p>但是，protocol buffers并不总是优于XML。在对带有标记的文本文件（如HTML）进行建模时，XML要好于protocol buffers，因为protocol buffers不能把文本和结构交织在一起。</p>
 <p>参见：<a href="https://developers.google.com/protocol-buffers/docs/overview" target="_blank" rel="noopener">Developer Guide</a></p>
 
@@ -343,27 +335,27 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">Hzc</p>
-  <div class="site-description" itemprop="description">吐槽、发牢骚的地方</div>
+  <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -396,7 +388,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -405,12 +397,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">22k</span>
+    <span title="Symbols count total">26k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">20 mins.</span>
+    <span title="Reading time total">24 mins.</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
   </div>
@@ -476,6 +468,8 @@
 
 
 
+
+  
 
   
 

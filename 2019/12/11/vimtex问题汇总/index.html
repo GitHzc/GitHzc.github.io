@@ -45,14 +45,18 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="不如写点东西吧">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;archives&#x2F;2019&#x2F;11&#x2F;index.html">
+  <meta name="description" content="这个文档主要用来记录在mac上使用vimtex时遇到问题的解决方法  Critical Package ctex Error: CTeX fontset ‘mac’ is unavailable in current mode.solution：vimtex默认使用pdflatex作为编译器，编译中文时要改成xelatex。在tex文件的开头加上%! TEX program &#x3D; xelatex重启">
+<meta name="keywords" content="latex,问题解决">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vimtex问题汇总">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;11&#x2F;vimtex%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB&#x2F;index.html">
 <meta property="og:site_name" content="不如写点东西吧">
+<meta property="og:description" content="这个文档主要用来记录在mac上使用vimtex时遇到问题的解决方法  Critical Package ctex Error: CTeX fontset ‘mac’ is unavailable in current mode.solution：vimtex默认使用pdflatex作为编译器，编译中文时要改成xelatex。在tex文件的开头加上%! TEX program &#x3D; xelatex重启">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-11T13:30:29.286Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/archives/2019/11/">
+<link rel="canonical" href="http://yoursite.com/2019/12/11/vimtex%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/">
 
 
 <script id="page-configurations">
@@ -60,13 +64,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
-    isArchive: true
+    isArchive: false
   };
 </script>
 
-  <title>Archive | 不如写点东西吧</title>
+  <title>vimtex问题汇总 | 不如写点东西吧</title>
   
 
 
@@ -171,49 +175,120 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">Um..! 8 posts in total. Keep on posting.</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/11/vimtex%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hzc">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不如写点东西吧">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          vimtex问题汇总
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-11 21:11:16 / Modified: 21:30:29" itemprop="dateCreated datePublished" datetime="2019-12-11T21:11:16+08:00">2019-12-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">软件</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>192</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2019</h1>
+        <p><strong>这个文档主要用来记录在mac上使用<a href="https://github.com/lervag/vimtex" target="_blank" rel="noopener">vimtex</a>时遇到问题的解决方法</strong></p>
+<ul>
+<li>Critical Package ctex Error: CTeX fontset ‘mac’ is unavailable in current mode.<br><strong>solution</strong>：vimtex默认使用pdflatex作为编译器，编译中文时要改成xelatex。在tex文件的开头加上<br><code>%! TEX program = xelatex</code><br>重启vimtex!!!</li>
+</ul>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-24T10:36:11+08:00"
-              content="2019-11-24">
-          11-24
-        </time>
-      </div>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/latex/" rel="tag"># latex</a>
+              <a href="/tags/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" rel="tag"># 问题解决</a>
+          </div>
 
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/24/%E9%BB%91%E8%8B%B9%E6%9E%9CDell-P2417H%E5%8F%8C%E5%B1%8F%E6%98%BE%E7%A4%BA/" itemprop="url">
-            <span itemprop="name">黑苹果Dell P2417H双屏显示</span>
-          </a>
-      </h2>
+        
 
-    </header>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/10/hello-world/" rel="prev" title="Hello World">
+      <i class="fa fa-chevron-left"></i> Hello World
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/06/12/microrank/" rel="next" title="microrank">
+      microrank <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
   </article>
+  
+  
+  
 
-
-    </div>
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>

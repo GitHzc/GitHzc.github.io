@@ -50,7 +50,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="黑苹果Dell P2417H双屏显示">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;24&#x2F;%E9%BB%91%E8%8B%B9%E6%9E%9CDell-P2417H%E5%8F%8C%E5%B1%8F%E6%98%BE%E7%A4%BA&#x2F;index.html">
-<meta property="og:site_name" content="keep going">
+<meta property="og:site_name" content="不如写点东西吧">
 <meta property="og:description" content="台式机装了黑苹果，能够双屏显示，但是会出现字体模糊的情况。了解到苹果有HiDPI这种黑科技来提升显示效果，所以就试了一下，然后就开启了漫长的折腾之路。有关Hi-DPI可以看一下这篇文章：HiDPI是什么？以及黑苹果如何开启HiDPI">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-12-10T12:18:17.262Z">
@@ -70,7 +70,7 @@
   };
 </script>
 
-  <title>黑苹果Dell P2417H双屏显示 | keep going</title>
+  <title>黑苹果Dell P2417H双屏显示 | 不如写点东西吧</title>
   
 
 
@@ -114,10 +114,11 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">keep going</span>
+        <span class="site-title">不如写点东西吧</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+        <p class="site-subtitle">随便写写</p>
   </div>
 
   <div class="site-nav-toggle">
@@ -184,11 +185,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Hzc">
-      <meta itemprop="description" content="吐槽、发牢骚的地方">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="keep going">
+      <meta itemprop="name" content="不如写点东西吧">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -255,8 +256,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>台式机装了黑苹果，能够双屏显示，但是会出现字体模糊的情况。了解到苹果有HiDPI这种黑科技来提升显示效果，所以就试了一下，然后就开启了漫长的折腾之路。<br>有关Hi-DPI可以看一下这篇文章：<a href="https://www.sqlsec.com/2018/09/hidpi.html" target="_blank" rel="noopener">HiDPI是什么？以及黑苹果如何开启HiDPI</a></p>
-<a id="more"></a>
+        <p>台式机装了黑苹果，能够双屏显示，但是会出现字体模糊的情况。了解到苹果有HiDPI这种黑科技来提升显示效果，所以就试了一下，然后就开启了漫长的折腾之路。<br>有关Hi-DPI可以看一下这篇文章：<a href="https://www.sqlsec.com/2018/09/hidpi.html" target="_blank" rel="noopener">HiDPI是什么？以及黑苹果如何开启HiDPI</a><br><a id="more"></a></p>
 <h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><ul>
 <li>屏幕型号：Dell P2417H</li>
 <li>分辨率：1920x1080</li>
@@ -270,7 +270,7 @@
 <li>手动修改配置文件<br>手动修改配置文件也有好几种方法：<ol>
 <li><a href="https://blog.daliansky.net/" target="_blank" rel="noopener">黑果小兵</a>的教程<br><a href="https://blog.daliansky.net/Use-HIDPI-to-solve-sleep-wake-up-black-screen,-Huaping-and-connect-the-external-monitor-the-correct-posture.html" target="_blank" rel="noopener">使用HIDPI解决睡眠唤醒黑屏、花屏及连接外部显示器的正确姿势</a><br>这种方法需要用到FixEDID这个软件来生成edid的配置文件，然后进行替换。FixEDID这个软件一开始我没法打开，用Xcode重新生成后就可以正常使用了。</li>
 <li>在线配置文件编辑器<br><a href="https://comsysto.github.io/Display-Override-PropertyList-File-Parser-and-Generator-with-HiDPI-Support-For-Scaled-Resolutions/" target="_blank" rel="noopener">SCALED RESOLUTIONS</a><br>这种方法是把填入的配置信息转换成plist文件中的专用格式，完成后导出，在系统中替换。我用的时候添加了1600x900分辨率，但是最后并没有1600x900的HiDPI分辨率。</li>
-<li><span id='jump'>使用hackintool生成配置文件，进行替换。</span><br>打开hackintool，选择音频菜单，hackintool会识别到显示器，点击下方的添加分辨率按钮，就会自动生成不同的分辨率。点击导出按钮，就会生成配置文件和内核扩展。我采用的是这种方法，但只替换了配置文件，没有用生成的内核扩展。这种方法也无法生成1600x900的HiDPI分辨率，但它的效果是最好的。我用其他方法时，有的会使屏幕颜色变得很偏红，有的连1440x810的HiDPI分辨率都没有。</li>
+<li><span id="jump">使用hackintool生成配置文件，进行替换。</span><br>打开hackintool，选择音频菜单，hackintool会识别到显示器，点击下方的添加分辨率按钮，就会自动生成不同的分辨率。点击导出按钮，就会生成配置文件和内核扩展。我采用的是这种方法，但只替换了配置文件，没有用生成的内核扩展。这种方法也无法生成1600x900的HiDPI分辨率，但它的效果是最好的。我用其他方法时，有的会使屏幕颜色变得很偏红，有的连1440x810的HiDPI分辨率都没有。</li>
 </ol>
 </li>
 </ul>
@@ -345,27 +345,27 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">Hzc</p>
-  <div class="site-description" itemprop="description">吐槽、发牢骚的地方</div>
+  <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -398,7 +398,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -407,12 +407,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">22k</span>
+    <span title="Symbols count total">26k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">20 mins.</span>
+    <span title="Reading time total">24 mins.</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
   </div>
@@ -478,6 +478,8 @@
 
 
 
+
+  
 
   
 
