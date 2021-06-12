@@ -50,7 +50,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux的mount namespace">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;10&#x2F;Linux%E7%9A%84mount%20namespace&#x2F;index.html">
-<meta property="og:site_name" content="keep going">
+<meta property="og:site_name" content="不如写点东西吧">
 <meta property="og:description" content="mount namespace介绍  Linux的namespace技术可以用资源隔离，起到虚拟化的效果，使用namespace和cgroup就能实现类似于docker的简单容器。namespace有以下类别，对不同的资源起到隔离效果：">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-12-10T12:19:59.857Z">
@@ -70,7 +70,7 @@
   };
 </script>
 
-  <title>Linux的mount namespace | keep going</title>
+  <title>Linux的mount namespace | 不如写点东西吧</title>
   
 
 
@@ -114,10 +114,11 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">keep going</span>
+        <span class="site-title">不如写点东西吧</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+        <p class="site-subtitle">随便写写</p>
   </div>
 
   <div class="site-nav-toggle">
@@ -184,11 +185,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Hzc">
-      <meta itemprop="description" content="吐槽、发牢骚的地方">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="keep going">
+      <meta itemprop="name" content="不如写点东西吧">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -248,44 +249,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="mount-namespace介绍"><a href="#mount-namespace介绍" class="headerlink" title="mount namespace介绍"></a>mount namespace介绍</h2><p>  Linux的namespace技术可以用资源隔离，起到虚拟化的效果，使用namespace和cgroup就能实现类似于docker的简单容器。namespace有以下类别，对不同的资源起到隔离效果：</p>
-<a id="more"></a>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>mount namespace</td>
-<td>隔离文件系统</td>
-</tr>
-<tr>
-<td>UTS namespace</td>
-<td>隔离主机名和域名</td>
-</tr>
-<tr>
-<td>IPC namespace</td>
-<td>隔离用于进程间通信的消息队列、信号量、共享内存</td>
-</tr>
-<tr>
-<td>network namespace</td>
-<td>隔离ipv4、ipv6栈，路由表，防火墙规则等资源</td>
-</tr>
-<tr>
-<td>PID namespace</td>
-<td>隔离进程pid</td>
-</tr>
-<tr>
-<td>user namespace</td>
-<td>隔离uid，gid</td>
-</tr>
-<tr>
-<td>这里主要介绍mount namespace这个命名空间。</td>
-<td></td>
-</tr>
-</tbody></table>
+        <h2 id="mount-namespace介绍"><a href="#mount-namespace介绍" class="headerlink" title="mount namespace介绍"></a>mount namespace介绍</h2><p>  Linux的namespace技术可以用资源隔离，起到虚拟化的效果，使用namespace和cgroup就能实现类似于docker的简单容器。namespace有以下类别，对不同的资源起到隔离效果：<br><a id="more"></a><br>名称               | 作用<br>————————— | ———————————————————————-<br>mount namespace    | 隔离文件系统<br>UTS namespace      | 隔离主机名和域名<br>IPC namespace      | 隔离用于进程间通信的消息队列、信号量、共享内存<br>network namespace  | 隔离ipv4、ipv6栈，路由表，防火墙规则等资源<br>PID namespace      | 隔离进程pid<br>user namespace     | 隔离uid，gid<br>这里主要介绍mount namespace这个命名空间。</p>
 <ul>
 <li>mount namespace隔离的是文件系统，不同mount namespace中的进程看到的mount信息不同，目录树也就不同。</li>
 <li>/proc/[pid]/mounts，/proc/[pid]/mountinfo，/proc/[pid]/mountstats这几个文件提供了对应的mount namespace的视图。</li>
@@ -295,6 +259,7 @@
 <p>但是有时我们并不想要如此强的隔离性，比如想挂载一个device，那么就得在每个mount namespace中都mount一次，很不方便。所幸Linux还提供了一种shared subtrees的机制，能使mount或umount的事件在不同的namespace中传播。</p>
 <h2 id="shared-subtrees机制"><a href="#shared-subtrees机制" class="headerlink" title="shared subtrees机制"></a>shared subtrees机制</h2><p>shared subtrees特性在Linux 2.6.15的版本引入，缓解了mount namespace的隔离性所带来的问题。这个特性允许mount和umount事件发生时，能够从属于同一peer group的namespace传播到另一个namespace，使得一次mount或umout操作能对多个namespace中的挂载点列表起作用。</p>
 <p>每个挂载点有一个传播类型（propagation type），决定了在这个挂载点上发生的mount或umount事件怎样传播。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -302,7 +267,8 @@
 <th>说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>MS_SHARED</td>
 <td>此类型的挂载点将事件传播到peer group中的其他挂载点，同时接收来自peer group的其他挂载点下发生的事件。</td>
 </tr>
@@ -318,7 +284,9 @@
 <td>MS_UNBINDABLE</td>
 <td>类似与MS_PRIVATE，此外，这种挂载点不能使用mount命令的bind功能。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p><strong>注意：</strong></p>
 <ul>
 <li>一个挂载点可以是一个peer group的slave的同时，能够与另一个peer group分享事件。</li>
@@ -340,30 +308,16 @@
 <li>unbindable</li>
 </ul>
 <p>X代表peer group的ID，有内核自动产生且是唯一的。需要注意的是propagate_from:X这个标签，它表示挂载点是一个slave，总是与master:X一起出现，这里的X表示进程的根目录下最近的占优势的peer group。如果挂载点的直接master是X，或者没有占优势的peer group，就只有master:X字段会显示出来，而不显示propagate_from:X字段。如果没有上述的标签，那这个挂载点就是private类型。</p>
-<h2 id="挂载点类型示例"><a href="#挂载点类型示例" class="headerlink" title="挂载点类型示例"></a>挂载点类型示例</h2><h4 id="MS-SHARED和MS-PRIVATE"><a href="#MS-SHARED和MS-PRIVATE" class="headerlink" title="MS_SHARED和MS_PRIVATE"></a>MS_SHARED和MS_PRIVATE</h4><p>以下命令在root下执行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">1、创建挂载点&#x2F;mntS，&#x2F;mntP</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">mount &#x2F;dev&#x2F;sda1 &#x2F;mntS</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">mount &#x2F;dev&#x2F;sda2 &#x2F;mntS</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">2、设置&#x2F;mntS的类型为MS_SHARED，&#x2F;mntP的类型为MS_PRIVATE</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">mount --make-shared &#x2F;mntS</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">mount --make-private &#x2F;mntP</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">3、查看&#x2F;proc&#x2F;self&#x2F;mountinfo文件的内容</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">cat &#x2F;proc&#x2F;self&#x2F;mountinfo | grep &#39;&#x2F;mnt&#39; | sed &#39;s&#x2F; - .*&#x2F;&#x2F;&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">146 29 8:1 &#x2F; &#x2F;mntS rw,relatime shared:102</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">341 29 8:2 &#x2F; &#x2F;mntP rw,relatime</span></pre></td></tr></table></figure>
-<p>从命令的输出可以看到，/mntS在peer group 102中是MS_SHARED类型。/mntP没有任何标签，因此是MS_PRIVATE类型。</p>
+<h2 id="挂载点类型示例"><a href="#挂载点类型示例" class="headerlink" title="挂载点类型示例"></a>挂载点类型示例</h2><h4 id="MS-SHARED和MS-PRIVATE"><a href="#MS-SHARED和MS-PRIVATE" class="headerlink" title="MS_SHARED和MS_PRIVATE"></a>MS_SHARED和MS_PRIVATE</h4><p>以下命令在root下执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">1、创建挂载点&#x2F;mntS，&#x2F;mntP</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">mount &#x2F;dev&#x2F;sda1 &#x2F;mntS</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">mount &#x2F;dev&#x2F;sda2 &#x2F;mntS</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">2、设置&#x2F;mntS的类型为MS_SHARED，&#x2F;mntP的类型为MS_PRIVATE</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">mount --make-shared &#x2F;mntS</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">mount --make-private &#x2F;mntP</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">3、查看&#x2F;proc&#x2F;self&#x2F;mountinfo文件的内容</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">cat &#x2F;proc&#x2F;self&#x2F;mountinfo | grep &#39;&#x2F;mnt&#39; | sed &#39;s&#x2F; - .*&#x2F;&#x2F;&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">146 29 8:1 &#x2F; &#x2F;mntS rw,relatime shared:102</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">341 29 8:2 &#x2F; &#x2F;mntP rw,relatime</span></pre></td></tr></table></figure><br>从命令的输出可以看到，/mntS在peer group 102中是MS_SHARED类型。/mntP没有任何标签，因此是MS_PRIVATE类型。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">1、使用unshare命令创建新的mount namespace</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">unshare -m --propagation unchanged sh</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">2、查看&#x2F;proc&#x2F;self&#x2F;mountinfo文件的内容</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">cat &#x2F;proc&#x2F;self&#x2F;mountinfo | grep &#39;&#x2F;mnt&#39; | sed &#39;s&#x2F; - .*&#x2F;&#x2F;&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">419 347 8:1 &#x2F; &#x2F;mntS rw,relatime shared:102</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">420 347 8:2 &#x2F; &#x2F;mntP rw,relatime</span></pre></td></tr></table></figure>
-<p>从命令的输出可以看到，新namespace复制了原来namespace的挂载点。这些复制的新挂载点保持原来的类型。（–propagation unchanged防止unshared在创建新mount namespace时将所有挂载点设置为private，这是默认的类型。）</p>
-<p>在新的mount namespace里面执行以下命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">mkdir &#x2F;mntS&#x2F;a</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">mount &#x2F;dev&#x2F;sdb3 &#x2F;mntS&#x2F;a</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">mkdir &#x2F;mntP&#x2F;b</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">mount &#x2F;dev&#x2F;sdb5 &#x2F;mntP&#x2F;b</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">cat &#x2F;proc&#x2F;self&#x2F;mountinfo | grep &#39;&#x2F;mnt&#39; | sed &#39;s&#x2F; - .*&#x2F;&#x2F;&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">434 369 8:1 &#x2F; &#x2F;mntS rw,relatime shared:102</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">436 369 8:2 &#x2F; &#x2F;mntP rw,relatime</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">435 434 8:19 &#x2F; &#x2F;mntS&#x2F;a rw,relatime shared:87</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">446 436 8:21 &#x2F; &#x2F;mntP&#x2F;b rw,relatime</span></pre></td></tr></table></figure>
-<p>由结果可以看到/mntS/a和/mntP/b分别继承了父挂载点的类型。</p>
-<p>回到原来的mount namespace，执行命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cat &#x2F;proc&#x2F;self&#x2F;mountinfo | grep &#39;&#x2F;mnt&#39; | sed &#39;s&#x2F; - .*&#x2F;&#x2F;&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">364 140 8:1 &#x2F; &#x2F;mntS rw,relatime shared:102</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">365 140 8:2 &#x2F; &#x2F;mntP rw,relatime</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">441 364 8:19 &#x2F; &#x2F;mntS&#x2F;a rw,relatime shared:87</span></pre></td></tr></table></figure>
-<p>由结果可以看到类型为MS_SHARED的挂载点/mntS下发生的mount事件传播到了原来的命名空间，但类型为MS_PRIVATE的挂载点/mntP下发生的mount事件则没有向外传播。</p>
+<p>从命令的输出可以看到，新namespace复制了原来namespace的挂载点。这些复制的新挂载点保持原来的类型。（—propagation unchanged防止unshared在创建新mount namespace时将所有挂载点设置为private，这是默认的类型。）</p>
+<p>在新的mount namespace里面执行以下命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">mkdir &#x2F;mntS&#x2F;a</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">mount &#x2F;dev&#x2F;sdb3 &#x2F;mntS&#x2F;a</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">mkdir &#x2F;mntP&#x2F;b</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">mount &#x2F;dev&#x2F;sdb5 &#x2F;mntP&#x2F;b</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">cat &#x2F;proc&#x2F;self&#x2F;mountinfo | grep &#39;&#x2F;mnt&#39; | sed &#39;s&#x2F; - .*&#x2F;&#x2F;&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">434 369 8:1 &#x2F; &#x2F;mntS rw,relatime shared:102</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">436 369 8:2 &#x2F; &#x2F;mntP rw,relatime</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">435 434 8:19 &#x2F; &#x2F;mntS&#x2F;a rw,relatime shared:87</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">446 436 8:21 &#x2F; &#x2F;mntP&#x2F;b rw,relatime</span></pre></td></tr></table></figure><br>由结果可以看到/mntS/a和/mntP/b分别继承了父挂载点的类型。</p>
+<p>回到原来的mount namespace，执行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cat &#x2F;proc&#x2F;self&#x2F;mountinfo | grep &#39;&#x2F;mnt&#39; | sed &#39;s&#x2F; - .*&#x2F;&#x2F;&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">364 140 8:1 &#x2F; &#x2F;mntS rw,relatime shared:102</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">365 140 8:2 &#x2F; &#x2F;mntP rw,relatime</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">441 364 8:19 &#x2F; &#x2F;mntS&#x2F;a rw,relatime shared:87</span></pre></td></tr></table></figure><br>由结果可以看到类型为MS_SHARED的挂载点/mntS下发生的mount事件传播到了原来的命名空间，但类型为MS_PRIVATE的挂载点/mntP下发生的mount事件则没有向外传播。</p>
 <h3 id="MS-SLAVE"><a href="#MS-SLAVE" class="headerlink" title="MS_SLAVE"></a>MS_SLAVE</h3><p>MS_SLAVE只从master shared peer group接收事件，不对外传播事件。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">1、创建MS_SHARED类型的挂载点&#x2F;mntX，&#x2F;mntY</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">mkdir &#x2F;mntX &#x2F;mntY</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">mount &#x2F;dev&#x2F;sda1 &#x2F;mntX</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">mount &#x2F;dev&#x2F;sda2 &#x2F;mntY</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">mount --make-shared &#x2F;mntX</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">mount --make-shared &#x2F;mntY</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">2、创建新的mount namespace</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">unshare -m --propagation unchanged bash</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">3、在新的mount namespace中指定&#x2F;mntY为MS_SLAVE</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">mount --make-slave &#x2F;mntY</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">4、在新的mount namespace中查看&#x2F;proc&#x2F;self&#x2F;mountinfo文件信息</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">cat &#x2F;proc&#x2F;self&#x2F;mountinfo | grep &#39;&#x2F;mnt&#39; | sed &#39;s&#x2F; - .*&#x2F;&#x2F;&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">477 439 8:1 &#x2F; &#x2F;mntX rw,relatime shared:87</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">478 439 8:2 &#x2F; &#x2F;mntY rw,relatime master:92</span></pre></td></tr></table></figure>
-<p>在新的mount namespace中执行以下命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">mkdir &#x2F;mntX&#x2F;a</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">mount &#x2F;dev&#x2F;sdb3 &#x2F;mntX&#x2F;a</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">mkdir &#x2F;mntY&#x2F;b</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">mount &#x2F;dev&#x2F;sdb5 &#x2F;mntY&#x2F;b</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">cat &#x2F;proc&#x2F;self&#x2F;mountinfo | grep &#39;&#x2F;mnt&#39; | sed &#39;s&#x2F; - .*&#x2F;&#x2F;&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">477 439 8:1 &#x2F; &#x2F;mntX rw,relatime shared:87</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">478 439 8:2 &#x2F; &#x2F;mntY rw,relatime master:92</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">479 477 8:19 &#x2F; &#x2F;mntX&#x2F;a rw,relatime shared:97</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">488 478 8:21 &#x2F; &#x2F;mntY&#x2F;b rw,relatime</span></pre></td></tr></table></figure>
-<p>由结果可以看到挂载点/mntX/a继承了父挂载点的挂载类型，/mntY/b的类型则是MS_PRIVATE。</p>
-<p>回到原来的mount namespace，执行命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cat &#x2F;proc&#x2F;self&#x2F;mountinfo | grep &#39;&#x2F;mnt&#39; | sed &#39;s&#x2F; - .*&#x2F;&#x2F;&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">146 140 8:1 &#x2F; &#x2F;mntX rw,relatime shared:87</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">344 140 8:2 &#x2F; &#x2F;mntY rw,relatime shared:92</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">482 146 8:19 &#x2F; &#x2F;mntX&#x2F;a rw,relatime shared:97</span></pre></td></tr></table></figure>
-<p>可以看到，类型为MS_SLAVE的挂载点/mntY下发生的事件并没有对外传播。</p>
-<p>在原来的mount namespace中创建挂载点/mntY/c</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">mkdir &#x2F;mntY&#x2F;c</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">mount &#x2F;dev&#x2F;sdb1 &#x2F;mntY&#x2F;c</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">cat &#x2F;proc&#x2F;self&#x2F;mountinfo | grep &#39;&#x2F;mnt&#39; | sed &#39;s&#x2F; - .*&#x2F;&#x2F;&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">146 140 8:1 &#x2F; &#x2F;mntX rw,relatime shared:87</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">344 140 8:2 &#x2F; &#x2F;mntY rw,relatime shared:92</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">482 146 8:19 &#x2F; &#x2F;mntX&#x2F;a rw,relatime shared:97</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">489 344 8:17 &#x2F; &#x2F;mntY&#x2F;c rw,relatime shared:102</span></pre></td></tr></table></figure>
-<p>在新的mount namespace中执行命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cat &#x2F;proc&#x2F;self&#x2F;mountinfo | grep &#39;&#x2F;mnt&#39; | sed &#39;s&#x2F; - .*&#x2F;&#x2F;&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">477 439 8:1 &#x2F; &#x2F;mntX rw,relatime shared:87</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">478 439 8:2 &#x2F; &#x2F;mntY rw,relatime master:92</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">479 477 8:19 &#x2F; &#x2F;mntX&#x2F;a rw,relatime shared:97</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">488 478 8:21 &#x2F; &#x2F;mntY&#x2F;b rw,relatime</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">493 478 8:17 &#x2F; &#x2F;mntY&#x2F;c rw,relatime master:102</span></pre></td></tr></table></figure>
-<p>可以看到在新的mount namespace中类型为MS_SLAVE的/mntY接收到了在原来的mount namespace中类型为MS_SHARED的挂载点/mntY下发生的事件。</p>
+<p>在新的mount namespace中执行以下命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">mkdir &#x2F;mntX&#x2F;a</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">mount &#x2F;dev&#x2F;sdb3 &#x2F;mntX&#x2F;a</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">mkdir &#x2F;mntY&#x2F;b</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">mount &#x2F;dev&#x2F;sdb5 &#x2F;mntY&#x2F;b</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">cat &#x2F;proc&#x2F;self&#x2F;mountinfo | grep &#39;&#x2F;mnt&#39; | sed &#39;s&#x2F; - .*&#x2F;&#x2F;&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">477 439 8:1 &#x2F; &#x2F;mntX rw,relatime shared:87</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">478 439 8:2 &#x2F; &#x2F;mntY rw,relatime master:92</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">479 477 8:19 &#x2F; &#x2F;mntX&#x2F;a rw,relatime shared:97</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">488 478 8:21 &#x2F; &#x2F;mntY&#x2F;b rw,relatime</span></pre></td></tr></table></figure><br>由结果可以看到挂载点/mntX/a继承了父挂载点的挂载类型，/mntY/b的类型则是MS_PRIVATE。</p>
+<p>回到原来的mount namespace，执行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cat &#x2F;proc&#x2F;self&#x2F;mountinfo | grep &#39;&#x2F;mnt&#39; | sed &#39;s&#x2F; - .*&#x2F;&#x2F;&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">146 140 8:1 &#x2F; &#x2F;mntX rw,relatime shared:87</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">344 140 8:2 &#x2F; &#x2F;mntY rw,relatime shared:92</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">482 146 8:19 &#x2F; &#x2F;mntX&#x2F;a rw,relatime shared:97</span></pre></td></tr></table></figure><br>可以看到，类型为MS_SLAVE的挂载点/mntY下发生的事件并没有对外传播。</p>
+<p>在原来的mount namespace中创建挂载点/mntY/c<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">mkdir &#x2F;mntY&#x2F;c</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">mount &#x2F;dev&#x2F;sdb1 &#x2F;mntY&#x2F;c</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">cat &#x2F;proc&#x2F;self&#x2F;mountinfo | grep &#39;&#x2F;mnt&#39; | sed &#39;s&#x2F; - .*&#x2F;&#x2F;&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">146 140 8:1 &#x2F; &#x2F;mntX rw,relatime shared:87</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">344 140 8:2 &#x2F; &#x2F;mntY rw,relatime shared:92</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">482 146 8:19 &#x2F; &#x2F;mntX&#x2F;a rw,relatime shared:97</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">489 344 8:17 &#x2F; &#x2F;mntY&#x2F;c rw,relatime shared:102</span></pre></td></tr></table></figure><br>在新的mount namespace中执行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cat &#x2F;proc&#x2F;self&#x2F;mountinfo | grep &#39;&#x2F;mnt&#39; | sed &#39;s&#x2F; - .*&#x2F;&#x2F;&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">477 439 8:1 &#x2F; &#x2F;mntX rw,relatime shared:87</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">478 439 8:2 &#x2F; &#x2F;mntY rw,relatime master:92</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">479 477 8:19 &#x2F; &#x2F;mntX&#x2F;a rw,relatime shared:97</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">488 478 8:21 &#x2F; &#x2F;mntY&#x2F;b rw,relatime</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">493 478 8:17 &#x2F; &#x2F;mntY&#x2F;c rw,relatime master:102</span></pre></td></tr></table></figure><br>可以看到在新的mount namespace中类型为MS_SLAVE的/mntY接收到了在原来的mount namespace中类型为MS_SHARED的挂载点/mntY下发生的事件。</p>
 <h3 id="MS-UNBINDABLE"><a href="#MS-UNBINDABLE" class="headerlink" title="MS_UNBINDABLE"></a>MS_UNBINDABLE</h3><p>MS_UNBINDABLE类型的用途之一是避免挂载点爆炸的问题。mount bind能把一个目录挂载到另一个目录，如果原来的目录对应的挂载点有多个子挂载点，那么这些子挂载点同样会被挂载到新的目录下。举个例子，原来有/, /mntX两个挂载点，把/用挂到/home/test之后就会有/，/mntX，/home/test，/home/test/mntX，然后再把/挂到/home/test2后，就会有/，/mntX，/home/test，/home/test/mntX，/home/test2，/home/test2/mntX，/home/test2/home/test，/home/test2/home/test/mntX。挂载点数目增长得非常快。</p>
 <p>类型为MS_UNBINDABLE的挂载点则在父挂载点被mount bind时不会被复制，截断了子挂载点数目的增长。如果/mntX和/home/test类型为MS_UNBINDABLE，则第一次mount bind的结果是/，/mntX，/home/test，第二次mount bind的结果是/，/mnt，/home/test，/home/test2。有效减少挂载点的数目。</p>
 <p><strong>参见：<a href="http://man7.org/linux/man-pages/man7/mount_namespaces.7.html" target="_blank" rel="noopener">mount namespace文档</a></strong></p>
@@ -436,27 +390,27 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">Hzc</p>
-  <div class="site-description" itemprop="description">吐槽、发牢骚的地方</div>
+  <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -489,7 +443,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -498,12 +452,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">22k</span>
+    <span title="Symbols count total">26k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">20 mins.</span>
+    <span title="Reading time total">24 mins.</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
   </div>
@@ -569,6 +523,8 @@
 
 
 
+
+  
 
   
 

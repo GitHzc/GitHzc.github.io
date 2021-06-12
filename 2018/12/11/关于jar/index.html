@@ -50,7 +50,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于jar">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2018&#x2F;12&#x2F;11&#x2F;%E5%85%B3%E4%BA%8Ejar&#x2F;index.html">
-<meta property="og:site_name" content="keep going">
+<meta property="og:site_name" content="不如写点东西吧">
 <meta property="og:description" content="jar介绍  使用JAR（Java Archive）的文件格式能够把多个文件打包为一个文件。一个jar文件包含class文件，与程序相关的辅助性资源文件。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-12-10T12:23:27.668Z">
@@ -70,7 +70,7 @@
   };
 </script>
 
-  <title>关于jar | keep going</title>
+  <title>关于jar | 不如写点东西吧</title>
   
 
 
@@ -114,10 +114,11 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">keep going</span>
+        <span class="site-title">不如写点东西吧</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+        <p class="site-subtitle">随便写写</p>
   </div>
 
   <div class="site-nav-toggle">
@@ -184,11 +185,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Hzc">
-      <meta itemprop="description" content="吐槽、发牢骚的地方">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="keep going">
+      <meta itemprop="name" content="不如写点东西吧">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -236,7 +237,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.5k</span>
+              <span>2.4k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -255,27 +256,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="jar介绍"><a href="#jar介绍" class="headerlink" title="jar介绍"></a>jar介绍</h2><p>  使用JAR（Java Archive）的文件格式能够把多个文件打包为一个文件。一个jar文件包含class文件，与程序相关的辅助性资源文件。</p>
-<a id="more"></a>
-<p>  使用jar有以下优点：</p>
+        <h2 id="jar介绍"><a href="#jar介绍" class="headerlink" title="jar介绍"></a>jar介绍</h2><p>  使用JAR（Java Archive）的文件格式能够把多个文件打包为一个文件。一个jar文件包含class文件，与程序相关的辅助性资源文件。<br><a id="more"></a><br>  使用jar有以下优点：</p>
 <ul>
-<li><p>安全性：对jar文件进行数字签名，方便认识签名的用户对软件进行授权。</p>
-</li>
-<li><p>缩短下载时间：所有的文件都在一个jar文件中，一次http就能把全部文件都下下来。</p>
-</li>
-<li><p>压缩：jar文件格式压缩了文件的大小，节省存储空间。</p>
-</li>
-<li><p>扩展性：把一个功能甚至一个软件打包成一个jar包，作为扩展的包加入到其他应用中。</p>
-</li>
-<li><p>密封性：package中包含的所有class都要在jar中，对package强制版本一致性。</p>
-</li>
-<li><p>版本：jar文件包含了供应商和版本信息。</p>
-</li>
+<li>安全性：对jar文件进行数字签名，方便认识签名的用户对软件进行授权。</li>
+<li>缩短下载时间：所有的文件都在一个jar文件中，一次http就能把全部文件都下下来。</li>
+<li>压缩：jar文件格式压缩了文件的大小，节省存储空间。</li>
+<li>扩展性：把一个功能甚至一个软件打包成一个jar包，作为扩展的包加入到其他应用中。</li>
+<li>密封性：package中包含的所有class都要在jar中，对package强制版本一致性。</li>
+<li>版本：jar文件包含了供应商和版本信息。</li>
 <li><p>可移植性：处理JAR文件的机制是Java平台核心API标准的一部分。</p>
 <h2 id="jar的简单用法"><a href="#jar的简单用法" class="headerlink" title="jar的简单用法"></a>jar的简单用法</h2><p>JDK提供了Java Archive Tool，使用jar命令就能调用这个工具来打jar包。</p>
-<p>操作                                     | 命令</p>
-</li>
-<li><p>————————————— | —————————<br>创建jar文件                              | jar cf jar文件 输入文件<br>查看jar文件内容                          | jar tf jar文件<br>提取jar文件内容                          | tar xf jar文件<br>从jar中提取特定文件                      | tar xf jar文件 提取文件名<br>运行jar文件（需要Main-class的Manifest头）| java -jar jar文件<br>将jar作为applet调用                      | &lt;applet code=AppletClassName.class<br>　　archive=”JarFileName.jar”<br>　　width=width height=height&gt;<br>&lt;/applet&gt;</p>
+<p>操作                                     | 命令<br>———————————————————— | —————————————-<br>创建jar文件                              | jar cf jar文件 输入文件<br>查看jar文件内容                          | jar tf jar文件<br>提取jar文件内容                          | tar xf jar文件<br>从jar中提取特定文件                      | tar xf jar文件 提取文件名<br>运行jar文件（需要Main-class的Manifest头）| java -jar jar文件<br>将jar作为applet调用                      | <applet code="AppletClassName.class<br">　　archive=”JarFileName.jar”<br>　　width=width height=height&gt;<br>&lt;/applet></applet></p>
 </li>
 </ul>
 <h2 id="jar的Manifest"><a href="#jar的Manifest" class="headerlink" title="jar的Manifest"></a>jar的Manifest</h2><p>  Manifest文件包含了jar文件中打包的文件的信息，使得jar文件有电子签名，版本控制，包密封以及其他功能。</p>
@@ -290,47 +281,49 @@
 <p>  要在已有的jar包中添加manifest属性，使用以下命令<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">jar -ufm jar文件 文本文件</span></pre></td></tr></table></figure><br>  u选项表示update。</p>
 <h3 id="设置应用程序的入口点"><a href="#设置应用程序的入口点" class="headerlink" title="设置应用程序的入口点"></a>设置应用程序的入口点</h3><p>  当把应用程序打包成jar文件时，需要指明jar文件中的哪个class是应用程序的入口点。Main-Class头用来提供这个信息。<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Main-Class: classname</span></pre></td></tr></table></figure><br>  所谓的入口点就是有public static void main(String[] args)函数的class。设置了入口点以后，就可以用<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">java -jar jar文件</span></pre></td></tr></table></figure><br>  运行程序，Main-Class指明的class的main函数会被执行。<br>  也可以直接在命令中指定入口点，使用jar命令的e选项：</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">jar cfe jar文件 入口点class名 输入文件</span></pre></td></tr></table></figure>
-
-
 <h3 id="使用Class-Path添加class"><a href="#使用Class-Path添加class" class="headerlink" title="使用Class-Path添加class"></a>使用Class-Path添加class</h3><p>  有时一个jar包中的文件可能会引用其他jar包中的文件，这时需要使用Class-Path头来指明jar包。<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Class-Path: jar文件1 jar文件2 目录名&#x2F;jar文件3</span></pre></td></tr></table></figure><br>  使用Class-Path的好处是可以避免在java命令中指明很长的-classpath。</p>
 <p>  <strong>注意：jar包可能是嵌套的，一个jar文件可能包含jar文件，要将被包含的jar包中的class添加到classpath时，要使用定制的代码来装载这些类，而不能用Class-Path。</strong></p>
 <h3 id="设置package版本信息"><a href="#设置package版本信息" class="headerlink" title="设置package版本信息"></a>设置package版本信息</h3><p>  有关版本信息的manifest header如下：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
 <th>header</th>
-<th>Definition</th>
+<th>Definition </th>
 </tr>
 </thead>
-<tbody><tr>
-<td>Name</td>
+<tbody>
+<tr>
+<td>  Name</td>
 <td>The name of the specification.</td>
 </tr>
 <tr>
-<td>Specification-Title</td>
+<td>  Specification-Title</td>
 <td>The title of the specification.</td>
 </tr>
 <tr>
-<td>Sepcrfication-Version</td>
+<td>  Sepcrfication-Version</td>
 <td>The version of the specification.</td>
 </tr>
 <tr>
-<td>Specrfication-Vendor</td>
+<td>  Specrfication-Vendor</td>
 <td>The vendor of the specification.</td>
 </tr>
 <tr>
-<td>Implementation-Title</td>
+<td>  Implementation-Title</td>
 <td>The title of the implementation.</td>
 </tr>
 <tr>
-<td>Implementation-Version</td>
+<td>  Implementation-Version</td>
 <td>The build number of the implementation.</td>
 </tr>
 <tr>
-<td>Implementation-Vendor</td>
+<td>  Implementation-Vendor</td>
 <td>The vendor of the implementation.</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="在jar文件中密封package"><a href="#在jar文件中密封package" class="headerlink" title="在jar文件中密封package"></a>在jar文件中密封package</h3><p>  可在jar文件中密封package，密封的意思是package中的所有class文件必须被打包到同一个jar文件中。为了保证class版本的一致性，会有这种密封package的需求。<br>  在manifest中指明密封的通用格式为：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Name: myCompany&#x2F;myPackage&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Sealed: true</span></pre></td></tr></table></figure><br> <strong>注意：package名要以”/“作为结束。</strong> </p>
 <p>  可以密封jar文件以确保jar文件中的所有package都被密封,在package上能够重写这个设置。密封jar的命令不需要指明Name，使用<code>Sealed: true</code>就可以。</p>
 <p><strong>参见：<a href="https://docs.oracle.com/javase/tutorial/deployment/jar/index.html" target="_blank" rel="noopener">java jar 文档</a></strong></p>
@@ -400,27 +393,27 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">Hzc</p>
-  <div class="site-description" itemprop="description">吐槽、发牢骚的地方</div>
+  <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -453,7 +446,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -462,12 +455,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">22k</span>
+    <span title="Symbols count total">26k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">20 mins.</span>
+    <span title="Reading time total">24 mins.</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
   </div>
@@ -533,6 +526,8 @@
 
 
 
+
+  
 
   
 
