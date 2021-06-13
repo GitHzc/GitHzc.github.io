@@ -199,10 +199,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-06-12 21:15:10 / Modified: 22:32:53" itemprop="dateCreated datePublished" datetime="2021-06-12T21:15:10+08:00">2021-06-12</time>
+              <time title="Created: 2021-06-12 21:15:10" itemprop="dateCreated datePublished" datetime="2021-06-12T21:15:10+08:00">2021-06-12</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-06-13 10:27:06" itemprop="dateModified" datetime="2021-06-13T10:27:06+08:00">2021-06-13</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -240,124 +246,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="MicroRank-End-to-End-Latency-Issue-Localization-with-Extended-Spectrum-Analysis-in-Microservice-Environments"><a href="#MicroRank-End-to-End-Latency-Issue-Localization-with-Extended-Spectrum-Analysis-in-Microservice-Environments" class="headerlink" title="MicroRank: End-to-End Latency Issue Localization with Extended Spectrum Analysis in Microservice Environments"></a>MicroRank: End-to-End Latency Issue Localization with Extended Spectrum Analysis in Microservice Environments</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>这篇论文介绍MicroRank，对微服务系统中出现的延迟问题做根因定位。MicroRank先对trace做异常检测，将trace分为正常和异常，利用正常和异常trace提供的信息，使用PageRank算法得到服务的正常得分和异常得分，再使用谱分析的方法计算得到服务的排名，排名越靠前的服务越可能是问题的根因。</p>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="trace数据"><a href="#trace数据" class="headerlink" title="trace数据"></a>trace数据</h3><ul>
-<li>包含请求的总延迟和单个操作的延迟</li>
-<li>将单条trace以树形结构表示，得到trace coverage graph，将多个trace coverage graph聚合起来，得到complete trace coverage graph</li>
-<li>将trace coverage graph中重复的边去掉，得到call graph</li>
-</ul>
-<h3 id="Spectrum-based-fault-location"><a href="#Spectrum-based-fault-location" class="headerlink" title="Spectrum-based fault location"></a>Spectrum-based fault location</h3><p>给定一个程序由许多模块构成，设计测试样例去覆盖这些模块，对于某一模块O得到测试结果$(O_{ef},O_{ep},O_{nf},O_{np})$</p>
-<ul>
-<li>$O_{ef}$：覆盖该模块但是失败的样例数量</li>
-<li>$O_{ep}$：覆盖该模块并且通过的样例数量</li>
-<li>$O_{nf}$：不覆盖该模块并且失败的样例数量</li>
-<li>$O_{np}$：不覆盖该模块并且通过的样例数量</li>
-</ul>
-<p>对上述指标采用一些特定的公式，例如Tarantula，就能计算出模块的suspicious score，表示该模块有多大的可能性是故障。</p>
-<h4 id="将spectrum的思想迁移到使用trace数据的根因定位"><a href="#将spectrum的思想迁移到使用trace数据的根因定位" class="headerlink" title="将spectrum的思想迁移到使用trace数据的根因定位"></a>将spectrum的思想迁移到使用trace数据的根因定位</h4><ul>
-<li>一个测试样例会覆盖多个程序模块，一次request会访问多个服务</li>
-<li>经过某一服务的请求，失败的次数多，成功的次数少，更有可能是问题的根因</li>
-</ul>
-<p>按照spectrum的思想，把单个服务看成是程序的一个模块，把request看成测试样例，trace则是执行测试样例的结果。正常的trace说明测试样例通过，异常的trace说明测试样例失败，因此可以统计得到每个服务$O_{ef}，O_{ep}，O_{nf}，O_{np}$ 指标，用这些可以计算服务的suspicious score。</p>
-<p>但是，这种方法有两个局限性：</p>
-<ul>
-<li>没有考虑到故障具有传播性，正常的服务会由于故障的传播而表现出异常，用spectrum的方法会算出来许多可能的根因，因为spectrum仅仅关注请求的数量。不同的请求对suspicious score应该有不同的贡献，如果有两个失败的request，覆盖的服务数量少的request更重要，因为缩小了故障的排查范围，所以在计算suspicious score时应该给这类请求更高的权重。</li>
-<li>不同的requst的数量不平衡，导致不同的服务被访问的次数差别悬殊，在统计服务的$O_{ef}，O_{ep}，O_{nf}，O_{np}$ 指标时导致偏差。所以应该对出现较少的请求更多的考虑</li>
-</ul>
-<h2 id="系统设计"><a href="#系统设计" class="headerlink" title="系统设计"></a>系统设计</h2><p>MicroRank由4个模块构成。</p>
-<ul>
-<li><p><strong>Anomaly Detector</strong>模块监控时间窗口内是否有异常出现，通过观察在时间窗口内出现的trace的延时是否高于期望的trace延时。如果高于期望，则判断有异常发生，触发根因定位过程。</p>
-</li>
-<li><p><strong>Data Preparator</strong>判别trace是否异常，根据trace构造call graph和operation-trace graph。</p>
-</li>
-<li><p><strong>PageRank Score</strong>根据call graph和operation-trace graph生成转移矩阵，计算得到服务的异常得分和正常得分。</p>
-</li>
-<li><p><strong>Weighted Spectrum Ranker</strong>根据正常得分和异常得分，计算服务排名，排名越靠前是根因的可能性越大。</p>
-</li>
-</ul>
-<h3 id="Anomaly-Detector"><a href="#Anomaly-Detector" class="headerlink" title="Anomaly Detector"></a>Anomaly Detector</h3><p>根据trace的延时判断trace是否异常。</p>
-<ul>
-<li><p>先取出一段时间中（1小时）产生的trace，计算这些trace中每个服务延时的平均值$\mu_o$和方差$\sigma_o$ 。</p>
-</li>
-<li><p>对滑动时间窗口中出现的trace进行监控。对于每条 trace，用下面的公式计算它的期望延迟，即是将trace里面包含的服务的平均延时和方差进行累加，$n$用来调整服务延时的上界，论文中设置为1.5。</p>
-<script type="math/tex; mode=display">
-L_{expected}=\sum count_o*(\mu_o+n*\sigma_o)</script></li>
-<li><p>如果trace的实际延迟高于$L_{expected}$，则认为发生了异常。</p>
-</li>
-<li><p>$\mu_o$ 和$\sigma_o$ 保持不变，知道出现false positive时重新计算。</p>
-</li>
-</ul>
-<h3 id="Data-Preparator"><a href="#Data-Preparator" class="headerlink" title="Data Preparator"></a>Data Preparator</h3><p>在Anomaly Detector检测到异常后，Data Preparator从trace中提取更多的信息来帮助定位根因。</p>
-<ul>
-<li><p>先将滑动时间窗口中出现的trace利用上述公式分为正常和异常。</p>
-</li>
-<li><p>对每条trace构造coverage graph，将coverage graph相同的trace分为同类trace，记录每一类trace的数量</p>
-</li>
-<li><p>将所有的coverage graph聚合成complete coverage graph。</p>
-<img src="/2021/06/12/microrank/image-20210612164447764.png" class>
-</li>
-<li><p>去掉complete coverage graph中正常请求的边，得到complete anomalous coverage graph。去掉异常请求的边得到complete normal coverage graph。</p>
-</li>
-<li><p>对complete anomalous coverage graph或者complete normal coverage graph中每条表示request的边，添加一个表示该request的节点，得到anomalous operation-trace graph或者normal operation-trace graph。下图表示用complete anomalous coverage graph构造的anomalous operation-trace graph</p>
-<img src="/2021/06/12/microrank/image-20210612164813708.png" class>
-</li>
-</ul>
-<h3 id="PageRank-Scorer"><a href="#PageRank-Scorer" class="headerlink" title="PageRank Scorer"></a>PageRank Scorer</h3><p>这个模块的作用在于对不同的请求，也就是不同的trace赋予计算suspicious score时不同的重要性。</p>
-<p>PageRank Scorer包含Normal Scorer（利用normal operation-trace graph），Anomalous Scorer（利用anomalous operation-trace graph）</p>
-<p>PageRank Scorer的三个key insight</p>
-<ul>
-<li>被越多异常trace覆盖的服务是根因的可能性越大</li>
-<li>包含越少服务的异常trace越重要，因为它们缩小了根因定位的范围</li>
-<li>数量越少的某一类trace越重要，可以平衡那些数量多的trace在做谱分析时的优势</li>
-</ul>
-<p>operation-trace graph上使用pagerank算法，可以求得不同服务在根因定位时的重要程度。</p>
-<p>operation-trace graph是一个异构的图，用Personalised PageRank算法可以处理这种异构图。</p>
-<p>构建opetraion-trace graph的转移矩阵$A$ </p>
-<ul>
-<li><p>转移矩阵中的元素$A_{st}$ ，表示从节点$s$ 转移到节点$t$ 的概率，使用以下方式计算，$O(s)$ 表示节点$s$出边的条数</p>
-<img src="/2021/06/12/microrank/image-20210612173841819.png" class>
-</li>
-<li><p>PageRank的迭代计算公式如下，$d$是阻尼系数，$u$ 是偏好向量，用来提升PageRank随机游走时对某个page的偏好</p>
-<img src="/2021/06/12/microrank/image-20210612174321395.png" class>
-</li>
-<li><p>转移矩阵的形式如下，$A_{oo}$ 表示服务与服务之间的转移关系(论文里面的operation跟服务是一个意思)，需要看call graph，$A_{ot}$ 与$A_{to}$ 是服务于trace之间的转移关系，需要看operation-trace graph，由于trace与trace之间没有转移关系，所以$A$的右下角为0。$A_{oo}$ 的作用在于当不同的服务被正常trace和异常trace覆盖的情况一样时，提供了额外的信息来判断重要性。</p>
-<img src="/2021/06/12/microrank/image-20210612175012489.png" class>
-</li>
-<li><p>call graph相对来说发生的变化比较少，因此operation-trace graph起到的作用更大，所以给$A_{oo}$ 乘上系数$\omega$ 来减少这部分的影响。</p>
-<img src="/2021/06/12/microrank/image-20210612181020958.png" class>
-</li>
-</ul>
-<p>构建偏好向量</p>
-<ul>
-<li><p>偏好向量$u$ 体现了trace scope和trace种类的重要性。由两部分构成$u=[u_o^T,u_t^T]^T$ ，$u_o^T$表示对服务的偏好，$u_t^T$表示对trace的偏好</p>
-</li>
-<li><p>$u_o^T$ 初始值为0，表示为服务没有偏好。</p>
-</li>
-<li><p>对于Anomalous Scorer，$u_t$ 为$[\theta_1,\theta_2,…,\theta_m]^T$，其中$n_i$是被异常trace i覆盖的服务的数量，$k_i$是trace i这一类trace的数量</p>
-<img src="/2021/06/12/microrank/image-20210612201751564.png" class>
-</li>
-<li><p>$n_i$ 会提升覆盖服务少的trace的重要性，$k_i$会提升数量少的trace的重要性。</p>
-</li>
-<li>对于Normal Scorer，只考虑trace种类的重要性。因为知道正常的trace所覆盖的服务对定位根因起不了什么作用。$\theta_i=\frac{n_i^{-1}}{\sum n_j^{-1}}$ </li>
-</ul>
-<p>PageRank得分向量$v$</p>
-<ul>
-<li>初始得分向量$v^{(0)}=[v_o^T,v_t^T]^T$，$v_o=[\frac{1}{N_o},\frac{1}{N_o},…,\frac{1}{N_o}]$，$N_o$是operation-trace graph中服务的数量，$v_t=[\frac{1}{N_t},\frac{1}{N_t},…,\frac{1}{N_t}]$，$N_t$是operation-trace graph中trace的数量。</li>
-<li>Anomalous Scorer和Normal Scorer分别获取正常得分向量和异常得分向量</li>
-</ul>
-<h3 id="Weighted-Spectrum-Ranker"><a href="#Weighted-Spectrum-Ranker" class="headerlink" title="Weighted Spectrum Ranker"></a>Weighted Spectrum Ranker</h3><p>有了每个服务的正常得分和异常得分，正常trace数量和异常trace数量也已知，对于某个服务，spectrum方法的4个指标计算如下</p>
-<img src="/2021/06/12/microrank/image-20210612204005806.png" class>
-<p>其中$F$是服务的异常得分，$P$是服务的正常得分，$N_{ef}$和$N_{ep}$分别是覆盖服务的异常trace和正常trace的数量，$N_f$和$N_p$分别是滑动时间窗口内异常trace和正常trace的数量。</p>
-<p>如果服务没有异常得分或者正常得分，统一设置为0.0001。</p>
-<p>MicroRank最后根据Spectrum公式算出各个服务的suspicious score，进行排名</p>
-<h2 id="总结思考"><a href="#总结思考" class="headerlink" title="总结思考"></a>总结思考</h2><p>MicroRank特点</p>
-<ul>
-<li>利用了正常trace的信息和异常trace的信息</li>
-<li>从trace的数量和trace覆盖服务的数量两方面来提升trace的重要性</li>
-<li>用PageRank算法计算不同服务的重要性</li>
-<li>需要的trace数据量少</li>
-</ul>
-
+          <h1 id="MicroRank-End-to-End-Latency-Issue-Localization-with-Extended-Spectrum-Analysis-in-Microservice-Environments"><a href="#MicroRank-End-to-End-Latency-Issue-Localization-with-Extended-Spectrum-Analysis-in-Microservice-Environments" class="headerlink" title="MicroRank: End-to-End Latency Issue Localization with Extended Spectrum Analysis in Microservice Environments"></a>MicroRank: End-to-End Latency Issue Localization with Extended Spectrum Analysis in Microservice Environments</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>这篇论文介绍MicroRank，对微服务系统中出现的延迟问题做根因定位。MicroRank先对trace做异常检测，将trace分为正常和异常，利用正常和异常trace提供的信息，使用PageRank算法得到服务的正常得分和异常得分，再使用谱分析的方法计算得到服务的排名，排名越靠前的服务越可能是问题的根因。<br></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/06/12/microrank/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
