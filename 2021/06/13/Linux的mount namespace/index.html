@@ -45,18 +45,18 @@
   };
 </script>
 
-  <meta name="description" content="mount namespace介绍  Linux的namespace技术可以用资源隔离，起到虚拟化的效果，使用namespace和cgroup就能实现类似于docker的简单容器。namespace有以下类别，对不同的资源起到隔离效果：">
+  <meta name="description" content="介绍mount namespace，man文档的翻译">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux的mount namespace">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;10&#x2F;Linux%E7%9A%84mount%20namespace&#x2F;index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;06&#x2F;13&#x2F;Linux%E7%9A%84mount%20namespace&#x2F;index.html">
 <meta property="og:site_name" content="不如写点东西吧">
-<meta property="og:description" content="mount namespace介绍  Linux的namespace技术可以用资源隔离，起到虚拟化的效果，使用namespace和cgroup就能实现类似于docker的简单容器。namespace有以下类别，对不同的资源起到隔离效果：">
+<meta property="og:description" content="介绍mount namespace，man文档的翻译">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-10T12:19:59.857Z">
+<meta property="og:updated_time" content="2021-06-13T03:18:42.563Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2019/12/10/Linux%E7%9A%84mount%20namespace/">
+<link rel="canonical" href="http://yoursite.com/2021/06/13/Linux%E7%9A%84mount%20namespace/">
 
 
 <script id="page-configurations">
@@ -180,7 +180,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/10/Linux%E7%9A%84mount%20namespace/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/13/Linux%E7%9A%84mount%20namespace/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -203,7 +203,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-12-10 20:19:59" itemprop="dateCreated datePublished" datetime="2019-12-10T20:19:59+08:00">2019-12-10</time>
+              <time title="Created: 2021-06-13 11:18:42" itemprop="dateCreated datePublished" datetime="2021-06-13T11:18:42+08:00">2021-06-13</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -211,8 +211,8 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/technology/" itemprop="url" rel="index">
+                    <span itemprop="name">technology</span>
                   </a>
                 </span>
             </span>
@@ -230,7 +230,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>6.7k</span>
+              <span>6.8k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -249,7 +249,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="mount-namespace介绍"><a href="#mount-namespace介绍" class="headerlink" title="mount namespace介绍"></a>mount namespace介绍</h2><p>  Linux的namespace技术可以用资源隔离，起到虚拟化的效果，使用namespace和cgroup就能实现类似于docker的简单容器。namespace有以下类别，对不同的资源起到隔离效果：<br><a id="more"></a><br>名称               | 作用<br>————————— | ———————————————————————-<br>mount namespace    | 隔离文件系统<br>UTS namespace      | 隔离主机名和域名<br>IPC namespace      | 隔离用于进程间通信的消息队列、信号量、共享内存<br>network namespace  | 隔离ipv4、ipv6栈，路由表，防火墙规则等资源<br>PID namespace      | 隔离进程pid<br>user namespace     | 隔离uid，gid<br>这里主要介绍mount namespace这个命名空间。</p>
+        <p>介绍mount namespace，man文档的翻译<br><a id="more"></a></p>
+<h2 id="mount-namespace介绍"><a href="#mount-namespace介绍" class="headerlink" title="mount namespace介绍"></a>mount namespace介绍</h2><p>  Linux的namespace技术可以用资源隔离，起到虚拟化的效果，使用namespace和cgroup就能实现类似于docker的简单容器。namespace有以下类别，对不同的资源起到隔离效果：<br>名称               | 作用<br>————————— | ———————————————————————-<br>mount namespace    | 隔离文件系统<br>UTS namespace      | 隔离主机名和域名<br>IPC namespace      | 隔离用于进程间通信的消息队列、信号量、共享内存<br>network namespace  | 隔离ipv4、ipv6栈，路由表，防火墙规则等资源<br>PID namespace      | 隔离进程pid<br>user namespace     | 隔离uid，gid<br>这里主要介绍mount namespace这个命名空间。</p>
 <ul>
 <li>mount namespace隔离的是文件系统，不同mount namespace中的进程看到的mount信息不同，目录树也就不同。</li>
 <li>/proc/[pid]/mounts，/proc/[pid]/mountinfo，/proc/[pid]/mountstats这几个文件提供了对应的mount namespace的视图。</li>
@@ -339,12 +340,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/12/10/Protocol-Buffers/" rel="prev" title="Protocol Buffers">
-      <i class="fa fa-chevron-left"></i> Protocol Buffers
+    <a href="/2021/06/13/hexo%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" rel="prev" title="hexo问题汇总">
+      <i class="fa fa-chevron-left"></i> hexo问题汇总
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/12/10/hello-world/" rel="next" title="Hello World">
-      Hello World <i class="fa fa-chevron-right"></i>
+    <a href="/2021/06/13/Protocol-Buffers/" rel="next" title="Protocol Buffers">
+      Protocol Buffers <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -397,20 +398,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -452,12 +453,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">26k</span>
+    <span title="Symbols count total">28k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">24 mins.</span>
+    <span title="Reading time total">25 mins.</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
   </div>

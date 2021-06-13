@@ -45,18 +45,18 @@
   };
 </script>
 
-  <meta name="description" content="protocol buffers是什么 protocol buffers是一种灵活，可扩展，自动的，用来序列化结构化数据的机制。 相比XML，protocol buffers更小型，快速和简单。 定义好数据的结构，使用生成的代码来从数据流中读写数据。 数据的结构有更新时，不会影响到使用旧数据结构的程序。">
+  <meta name="description" content="简单介绍protocol buffer，grpc入坑知识">
 <meta name="keywords" content="tools">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Protocol Buffers">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;10&#x2F;Protocol-Buffers&#x2F;index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;06&#x2F;13&#x2F;Protocol-Buffers&#x2F;index.html">
 <meta property="og:site_name" content="不如写点东西吧">
-<meta property="og:description" content="protocol buffers是什么 protocol buffers是一种灵活，可扩展，自动的，用来序列化结构化数据的机制。 相比XML，protocol buffers更小型，快速和简单。 定义好数据的结构，使用生成的代码来从数据流中读写数据。 数据的结构有更新时，不会影响到使用旧数据结构的程序。">
+<meta property="og:description" content="简单介绍protocol buffer，grpc入坑知识">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-10T12:17:36.357Z">
+<meta property="og:updated_time" content="2021-06-13T03:21:31.996Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2019/12/10/Protocol-Buffers/">
+<link rel="canonical" href="http://yoursite.com/2021/06/13/Protocol-Buffers/">
 
 
 <script id="page-configurations">
@@ -180,7 +180,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/10/Protocol-Buffers/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/13/Protocol-Buffers/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -203,7 +203,18 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-12-10 20:17:36" itemprop="dateCreated datePublished" datetime="2019-12-10T20:17:36+08:00">2019-12-10</time>
+              <time title="Created: 2021-06-13 11:21:31" itemprop="dateCreated datePublished" datetime="2021-06-13T11:21:31+08:00">2021-06-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technology/" itemprop="url" rel="index">
+                    <span itemprop="name">technology</span>
+                  </a>
+                </span>
             </span>
 
           
@@ -238,12 +249,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="protocol-buffers是什么"><a href="#protocol-buffers是什么" class="headerlink" title="protocol buffers是什么"></a>protocol buffers是什么</h1><ul>
+        <p>简单介绍protocol buffer，grpc入坑知识<br><a id="more"></a></p>
+<h1 id="protocol-buffers是什么"><a href="#protocol-buffers是什么" class="headerlink" title="protocol buffers是什么"></a>protocol buffers是什么</h1><ul>
 <li>protocol buffers是一种灵活，可扩展，自动的，用来序列化结构化数据的机制。</li>
 <li>相比XML，protocol buffers更小型，快速和简单。</li>
 <li>定义好数据的结构，使用生成的代码来从数据流中读写数据。</li>
-<li>数据的结构有更新时，不会影响到使用旧数据结构的程序。<a id="more"></a>
-<h1 id="protocol-buffers如何运作"><a href="#protocol-buffers如何运作" class="headerlink" title="protocol buffers如何运作"></a>protocol buffers如何运作</h1></li>
+<li>数据的结构有更新时，不会影响到使用旧数据结构的程序。<h1 id="protocol-buffers如何运作"><a href="#protocol-buffers如何运作" class="headerlink" title="protocol buffers如何运作"></a>protocol buffers如何运作</h1></li>
 </ul>
 <ol>
 <li><p>在.proto文件中message类型指明要序列化的数据的结构。message是信息的逻辑记录，包含一系列name-value对。</p>
@@ -284,13 +295,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/12/10/ETW-%E7%90%86%E8%A7%A3/" rel="prev" title="ETW 理解">
-      <i class="fa fa-chevron-left"></i> ETW 理解
+    <a href="/2021/06/13/Linux%E7%9A%84mount%20namespace/" rel="prev" title="Linux的mount namespace">
+      <i class="fa fa-chevron-left"></i> Linux的mount namespace
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2019/12/10/Linux%E7%9A%84mount%20namespace/" rel="next" title="Linux的mount namespace">
-      Linux的mount namespace <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -342,20 +350,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -397,12 +405,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">26k</span>
+    <span title="Symbols count total">28k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">24 mins.</span>
+    <span title="Reading time total">25 mins.</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
   </div>

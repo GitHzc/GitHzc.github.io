@@ -45,16 +45,16 @@
   };
 </script>
 
-  <meta name="description" content="背景介绍软件系统越来越复杂，要解释软件的所有执行状态是不可能的，应用在运行时不可避免地会出现意料之外的行为。软件和硬件的大量耦合以及workload的不同特性使得软件问题诊断变得十分困难。使用插桩能够改善软件可靠性和可管理性。插桩具有以下作用：  注入错误，使软件执行快速失败，从而减少debug时间。 解决性能问题，获取软件性能退化时的trace数据，定位出问题组件、服务或者瓶颈。 根据trans">
+  <meta name="description" content="ETW简单介绍">
 <meta name="keywords" content="tracing system">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ETW 理解">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;10&#x2F;ETW-%E7%90%86%E8%A7%A3&#x2F;index.html">
 <meta property="og:site_name" content="不如写点东西吧">
-<meta property="og:description" content="背景介绍软件系统越来越复杂，要解释软件的所有执行状态是不可能的，应用在运行时不可避免地会出现意料之外的行为。软件和硬件的大量耦合以及workload的不同特性使得软件问题诊断变得十分困难。使用插桩能够改善软件可靠性和可管理性。插桩具有以下作用：  注入错误，使软件执行快速失败，从而减少debug时间。 解决性能问题，获取软件性能退化时的trace数据，定位出问题组件、服务或者瓶颈。 根据trans">
+<meta property="og:description" content="ETW简单介绍">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;etw_arch.gif">
-<meta property="og:updated_time" content="2019-12-11T07:30:43.595Z">
+<meta property="og:updated_time" content="2021-06-13T03:16:48.553Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;etw_arch.gif">
 
@@ -212,7 +212,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-11 15:30:43" itemprop="dateModified" datetime="2019-12-11T15:30:43+08:00">2019-12-11</time>
+                <time title="Modified: 2021-06-13 11:16:48" itemprop="dateModified" datetime="2021-06-13T11:16:48+08:00">2021-06-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -220,8 +220,8 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%A7%91%E7%A0%94/" itemprop="url" rel="index">
-                    <span itemprop="name">科研</span>
+                  <a href="/categories/technology/" itemprop="url" rel="index">
+                    <span itemprop="name">technology</span>
                   </a>
                 </span>
             </span>
@@ -239,7 +239,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>8.6k</span>
+              <span>8.7k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -258,12 +258,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h1><p>软件系统越来越复杂，要解释软件的所有执行状态是不可能的，应用在运行时不可避免地会出现意料之外的行为。软件和硬件的大量耦合以及workload的不同特性使得软件问题诊断变得十分困难。使用插桩能够改善软件可靠性和可管理性。<br>插桩具有以下作用：</p>
+        <p>ETW简单介绍<br><a id="more"></a></p>
+<h1 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h1><p>软件系统越来越复杂，要解释软件的所有执行状态是不可能的，应用在运行时不可避免地会出现意料之外的行为。软件和硬件的大量耦合以及workload的不同特性使得软件问题诊断变得十分困难。使用插桩能够改善软件可靠性和可管理性。<br>插桩具有以下作用：</p>
 <ul>
 <li>注入错误，使软件执行快速失败，从而减少debug时间。</li>
 <li>解决性能问题，获取软件性能退化时的trace数据，定位出问题组件、服务或者瓶颈。</li>
-<li>根据transaction的trace数据统计资源使用，进行容量规划和趋势分析。<a id="more"></a>
-</li>
+<li>根据transaction的trace数据统计资源使用，进行容量规划和趋势分析。</li>
 </ul>
 <h1 id="ETW"><a href="#ETW" class="headerlink" title="ETW"></a>ETW</h1><h2 id="ETW简介"><a href="#ETW简介" class="headerlink" title="ETW简介"></a>ETW简介</h2><p>ETW的全称是Event Tracing for Windows，是windows提供的一个通用和高速的tracing工具。ETW的buffering和logging机制在内核中实现，用户态应用程序和内核态设备驱动程序利用ETW提供的机制来产生事件。ETW能够动态enable或者disable logging，logging的数据先存在per-processor buffer中，然后由一个异步的线程写回到硬盘中。<br>ETW首先在windows 2000引入，之后它就成了windows平台上重要的插桩技术。ETW被抽象到了windows preprocessor software tracing technology中。在windows Vista上，ETW经历了一次大的升级，重要的变化之一是统一事件生产者模型和API的引入。这个统一的API将记录trace和写到事件查看器结合起来，成为对事件生产者一致且易用的机制。  </p>
 <h2 id="ETW-architecture"><a href="#ETW-architecture" class="headerlink" title="ETW architecture"></a>ETW architecture</h2><p><img src="/images/etw_arch.gif" alt="ETW architecture"><br>ETW的架构包含4个主要的组件：</p>
@@ -316,8 +316,8 @@
       <i class="fa fa-chevron-left"></i> 黑苹果Dell P2417H双屏显示
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/12/10/Protocol-Buffers/" rel="next" title="Protocol Buffers">
-      Protocol Buffers <i class="fa fa-chevron-right"></i>
+    <a href="/2019/12/10/hello-world/" rel="next" title="Hello World">
+      Hello World <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -370,20 +370,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -425,12 +425,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">26k</span>
+    <span title="Symbols count total">28k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">24 mins.</span>
+    <span title="Reading time total">25 mins.</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
   </div>
